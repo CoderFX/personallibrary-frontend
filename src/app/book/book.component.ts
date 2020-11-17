@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {NgForm} from "@angular/forms";
+import {FormBuilder, FormGroup, NgForm} from "@angular/forms";
 
 
 export class Book {
@@ -22,15 +22,26 @@ export class BookComponent implements OnInit {
 
   books: Book[];
   closeResult: string;
+  editForm: FormGroup;
+  private deleteId: number;
 
   constructor(
     private httpClient: HttpClient,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private fb: FormBuilder
   ) {
   }
 
   ngOnInit(): void {
     this.getBooks();
+
+    this.editForm = this.fb.group(
+      {
+        book_id: [''],
+        title: [''],
+        year: ['']
+      }
+    );
   }
 
   getBooks() {
@@ -70,4 +81,53 @@ export class BookComponent implements OnInit {
     this.modalService.dismissAll(); //dismiss the modal
   }
 
+  openDetails(targetModal, book: Book) {
+    this.modalService.open(targetModal, {
+      centered: true,
+      backdrop: 'static',
+      size: 'lg'
+    });
+    document.getElementById('btitle').setAttribute('value', book.title);
+    document.getElementById('byear').setAttribute('value', String(book.year));
+  }
+
+  openEdit(targetModal, book: Book) {
+    this.modalService.open(targetModal, {
+      centered: true,
+      backdrop: 'static',
+      size: 'lg'
+    });
+    this.editForm.patchValue( {
+      book_id: book.book_id,
+      title: book.title,
+      year: book.year
+    });
+  }
+
+  onSave() {
+    const editURL = 'http://localhost:8080/api/book/' + this.editForm.value.book_id + '/edit';
+    console.log(this.editForm.value);
+    this.httpClient.put(editURL, this.editForm.value)
+      .subscribe((results) => {
+        this.ngOnInit();
+        this.modalService.dismissAll();
+      });
+  }
+
+  openDelete(targetModal, book: Book) {
+    this.deleteId = book.book_id;
+    this.modalService.open(targetModal, {
+      backdrop: 'static',
+      size: 'lg'
+    });
+  }
+
+  onDelete() {
+    const deleteURL = 'http://localhost:8080/api/book/' + this.deleteId + '/delete';
+    this.httpClient.delete(deleteURL)
+      .subscribe((results) => {
+        this.ngOnInit();
+        this.modalService.dismissAll();
+      });
+  }
 }
