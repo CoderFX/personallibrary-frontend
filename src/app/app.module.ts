@@ -12,7 +12,7 @@ import { FooterComponent } from './footer/footer.component';
 import { MainpageComponent } from './mainpage/mainpage.component';
 import {RouterModule} from "@angular/router";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -31,14 +31,15 @@ import {FormsModule} from "@angular/forms";
     FormsModule,
     NgbModule,
     RouterModule.forRoot([
-        {
-          path: 'main',
-          component: MainpageComponent
-        }
+      {
+        path: 'main',
+        component: MainpageComponent
+      }
     ]),
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule
 
-      ],
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
