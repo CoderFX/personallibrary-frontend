@@ -1,28 +1,28 @@
 <div class="container">
   <div class="border">
     <button class="btn btn-md btn-outline-primary" (click)="open(content)">
-      <i class="fa fa-book"></i>New Book</button>
+      <i class="fa fa-user"></i>New Author</button>
   </div>
   <table class="table table-bordered table-striped">
     <thead>
     <tr>
       <th>ID</th>
-      <th>Title</th>
-      <th>Year</th>
+      <th>Name</th>
+      <th>Surname</th>
       <th>Actions</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let book of books">
-      <td><span>{{book.book_id}}</span></td>
-      <td><span>{{book.title}}</span></td>
-      <td><span>{{book.year}}</span></td>
+    <tr *ngFor="let author of authors">
+      <td><span>{{author.author_id}}</span></td>
+      <td><span>{{author.firstName}}</span></td>
+      <td><span>{{author.lastName}}</span></td>
       <td>
-        <button class="btn btn-sm btn-info" (click)="openDetails(contentDetails, book)">
+        <button class="btn btn-sm btn-info" (click)="openDetails(contentDetails, author)">
           <i class="fa fa-search"></i>Details</button>
-        <button class="btn btn-sm btn-warning" (click)="openEdit(contentEdit, book)">
+        <button class="btn btn-sm btn-warning" (click)="openEdit(contentEdit, author)">
           <i class="fa fa-edit"></i>Edit</button>
-        <button class="btn btn-sm btn-danger" (click)="openDelete(contentDelete, book)">
+        <button class="btn btn-sm btn-danger" (click)="openDelete(contentDelete, author)">
           <i class="fa fa-remove"></i>Delete</button>
       </td>
     </tr>
@@ -32,7 +32,7 @@
 
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">New book</h4>
+    <h4 class="modal-title" id="modal-basic-title">New author</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -40,15 +40,15 @@
   <div class="modal-body">
     <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
       <div class="form-group">
-        <label for="title">Title</label>
+        <label for="firstName">Name</label>
         <div class="input-group">
-          <input id="title" name="title" class="form-control" ngModel>
+          <input id="firstName" name="firstName" class="form-control" ngModel>
         </div>
       </div>
       <div class="form-group">
-        <label for="year">Year</label>
+        <label for="lastName">Surname</label>
         <div class="input-group">
-          <input id="year" name="year" class="form-control" ngModel>
+          <input id="lastName" name="lastName" class="form-control" ngModel>
         </div>
       </div>
       <div class="border text-center">
@@ -63,7 +63,7 @@
 
 <ng-template #contentDetails let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title-details">Book details</h4>
+    <h4 class="modal-title" id="modal-basic-title-details">Author details</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -71,15 +71,15 @@
   <div class="modal-body">
     <form>
       <div class="form-group">
-        <label>Title</label>
+        <label>Name</label>
         <div class="input-group">
-          <input id="btitle" class="form-control" readonly>
+          <input id="aname" class="form-control" readonly>
         </div>
       </div>
       <div class="form-group">
-        <label>Year</label>
+        <label>Surname</label>
         <div class="input-group">
-          <input id="byear" class="form-control" readonly>
+          <input id="asurname" class="form-control" readonly>
         </div>
       </div>
     </form>
@@ -91,7 +91,7 @@
 
 <ng-template #contentEdit let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title-edit">Edit book</h4>
+    <h4 class="modal-title" id="modal-basic-title-edit">Edit author</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -101,19 +101,19 @@
       <div class="form-group">
         <label>Id</label>
         <div class="input-group">
-          <input formControlName="book_id" class="form-control" readonly>
+          <input formControlName="author_id" class="form-control" readonly>
         </div>
       </div>
       <div class="form-group">
-        <label for="title">Title</label>
+        <label for="firstName">Name</label>
         <div class="input-group">
-          <input formControlName="title" class="form-control">
+          <input formControlName="firstName" class="form-control">
         </div>
       </div>
       <div class="form-group">
-        <label for="year">Year</label>
+        <label for="lastName">Surname</label>
         <div class="input-group">
-          <input formControlName="year" class="form-control">
+          <input formControlName="lastName" class="form-control">
         </div>
       </div>
       <div class="border text-center">

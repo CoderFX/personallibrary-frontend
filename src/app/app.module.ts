@@ -13,6 +13,7 @@ import { MainpageComponent } from './mainpage/mainpage.component';
 import {RouterModule} from "@angular/router";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { AuthorComponent } from './author/author.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     AuthorListComponent,
     HeaderComponent,
     FooterComponent,
-    MainpageComponent
+    MainpageComponent,
+    AuthorComponent
   ],
   imports: [
     BrowserModule,
