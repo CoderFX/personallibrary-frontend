@@ -2,13 +2,16 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, FormGroup, NgForm} from "@angular/forms";
+import {Author} from "../author/author.component";
 
 
 export class Book {
+
   constructor(
     public book_id: number,
     public title: string,
-    public year: number
+    public year: number,
+    public authors: Author[]
   ) {
   }
 }
@@ -21,6 +24,7 @@ export class Book {
 export class BookComponent implements OnInit {
 
   books: Book[];
+  // authors: Author[];
   closeResult: string;
   editForm: FormGroup;
   private deleteId: number;
@@ -34,6 +38,7 @@ export class BookComponent implements OnInit {
 
   ngOnInit(): void {
     this.getBooks();
+    // this.getAuthors();
 
     this.editForm = this.fb.group(
       {
@@ -52,6 +57,15 @@ export class BookComponent implements OnInit {
       }
     );
   }
+
+  // getAuthors() {
+  //   this.httpClient.get<any>('http://localhost:8080/api/author/all').subscribe(
+  //     response => {
+  //       console.log(response);
+  //       this.authors = response;
+  //     }
+  //   );
+  // }
 
   open(content)
   {
