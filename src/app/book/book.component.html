@@ -9,6 +9,7 @@
       <th>ID</th>
       <th>Title</th>
       <th>Year</th>
+      <th>Author</th>
       <th>Actions</th>
     </tr>
     </thead>
@@ -17,9 +18,13 @@
       <td><span>{{book.book_id}}</span></td>
       <td><span>{{book.title}}</span></td>
       <td><span>{{book.year}}</span></td>
+      <!--      If more than 1 author then use *ngFor="let author of book.authors"-->
+<!--      <td><span>{{book.authors[0].firstName}} {{book.authors[0].lastName}}</span></td>-->
+      <td><span>{{book.authors | json}}</span></td>
       <td>
         <button class="btn btn-sm btn-info" (click)="openDetails(contentDetails, book)">
-          <i class="fa fa-search"></i>Details</button>
+          <i class="fa fa-search"></i>Details
+        </button>
         <button class="btn btn-sm btn-warning" (click)="openEdit(contentEdit, book)">
           <i class="fa fa-edit"></i>Edit</button>
         <button class="btn btn-sm btn-danger" (click)="openDelete(contentDelete, book)">

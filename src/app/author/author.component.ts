@@ -17,6 +17,7 @@ export class Author {
   templateUrl: './author.component.html',
   styleUrls: ['./author.component.css']
 })
+
 export class AuthorComponent implements OnInit {
 
   authors: Author[];

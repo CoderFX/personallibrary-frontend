@@ -4,8 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BookComponent } from './book/book.component';
-import { BookListComponent } from './book-list/book-list.component';
-import { AuthorListComponent } from './author-list/author-list.component';
 import { HttpClientModule} from "@angular/common/http";
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -19,8 +17,6 @@ import { AuthorComponent } from './author/author.component';
   declarations: [
     AppComponent,
     BookComponent,
-    BookListComponent,
-    AuthorListComponent,
     HeaderComponent,
     FooterComponent,
     MainpageComponent,
